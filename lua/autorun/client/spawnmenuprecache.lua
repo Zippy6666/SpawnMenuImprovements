@@ -42,6 +42,18 @@ hook.Add("Initialize", "SpawnMenuAntiStutter", function()
 end)
 
 
+    -- Opens the spawnmenu for one second, clearing that first stutter
+local function PreOpenMenu()
+    RunConsoleCommand("+menu")
+    timer.Simple(1, function()
+        RunConsoleCommand("-menu")
+    end)
+end
+
+
 hook.Add("InitPostEntity", "SpawnMenuAntiStutter", function()
+    
+    PreOpenMenu()
     RunConsoleCommand("ClickAllNodes")
+    
 end)
