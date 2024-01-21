@@ -1,2 +1,2 @@
 >>> TODO <<<
-- Preload NPCs
+- Preload NPCs, weapons, and entities
