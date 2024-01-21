@@ -1,38 +1,31 @@
     // Adds a "All" category to some spawn menu tabs
 
-
-spawnmenugroupdone = spawnmenugroupdone or false
-
-
-
-if !spawnmenugroupdone then
-
-
-    -- NPCs
-    for cls, tbl in pairs(list.Get("NPC")) do
-
-        local NewTbl = table.Copy(tbl)
-        NewTbl.Category = "All"
-        NewTbl.IconOverride = "entities/"..cls..".png"
-        list.Set( "NPC", cls.."_all", NewTbl )
-
-    end
-
-
-    spawnmenugroupdone = true
-
-
-end
+local GenericIcon = "icon16/bricks_all.png"
+list.Set( "ContentCategoryIcons", "ALL", GenericIcon )
 
 
 
 hook.Add("Initialize", "spawnmenugrouper", function()
 
+    -- NPCs
+    for cls, tbl in pairs(list.Get("NPC")) do
+
+        local NewTbl = table.Copy(tbl)
+        NewTbl.Category = "ALL"
+        NewTbl.IconOverride = file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
+        or GenericIcon
+        list.Set( "NPC", cls.."_all", NewTbl )
+
+    end
+
+
     -- Entities
     for cls, tbl in pairs(list.Get("SpawnableEntities")) do
 
         local NewTbl = table.Copy(tbl)
-        NewTbl.Category = "All"
+        NewTbl.Category = "ALL"
+        NewTbl.IconOverride = file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
+        or GenericIcon
         list.Set( "SpawnableEntities", cls.."_all", NewTbl )
 
     end
@@ -42,7 +35,7 @@ hook.Add("Initialize", "spawnmenugrouper", function()
     for cls, tbl in pairs(list.Get("Weapon")) do
 
         local NewTbl = table.Copy(tbl)
-        NewTbl.Category = "All"
+        NewTbl.Category = "ALL"
         list.Set( "Weapon", cls.."_all", NewTbl )
 
     end

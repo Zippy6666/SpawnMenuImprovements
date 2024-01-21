@@ -25,6 +25,7 @@ hook.Add("Initialize", "SpawnMenuAntiStutter", function()
     concommand.Add("ClickAllNodes", function()
 
         local StartT = SysTime()
+        local NodeToSelect
 
 
         for _, node in ipairs(Nodes) do
@@ -32,7 +33,18 @@ hook.Add("Initialize", "SpawnMenuAntiStutter", function()
             -- Click the node
             node:DoClick()
 
+
+            if node:GetText()=="ALL" then
+                NodeToSelect = node
+            end
+
         end
+
+
+        -- Select "all" category
+        -- if NodeToSelect then
+        --     NodeToSelect:DoClick()
+        -- end
 
 
         MsgN("Clicked All Nodes (", math.Round(SysTime()-StartT, 2), " seconds)")
