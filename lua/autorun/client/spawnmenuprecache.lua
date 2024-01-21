@@ -45,7 +45,7 @@ end)
     -- Opens the spawnmenu for one second, clearing that first stutter
 local function PreOpenMenu()
     RunConsoleCommand("+menu")
-    timer.Simple(1, function()
+    timer.Simple(0.5, function()
         RunConsoleCommand("-menu")
     end)
 end
