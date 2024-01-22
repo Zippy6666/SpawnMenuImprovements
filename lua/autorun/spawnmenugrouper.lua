@@ -4,7 +4,6 @@ local GenericIcon = "icon16/bricks_all.png"
 list.Set( "ContentCategoryIcons", "ALL", GenericIcon )
 
 
-
 hook.Add("Initialize", "spawnmenugrouper", function()
 
     -- NPCs
@@ -17,6 +16,22 @@ hook.Add("Initialize", "spawnmenugrouper", function()
         list.Set( "NPC", cls.."_all", NewTbl )
 
     end
+
+
+    -- ZBase Test
+    -- if ZBaseSpawnMenuNPCList then
+
+    --     for cls, tbl in pairs(ZBaseSpawnMenuNPCList) do
+
+    --         local NewTbl = table.Copy(tbl)
+    --         NewTbl.Category = "ALL"
+    --         NewTbl.IconOverride = file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
+    --         or GenericIcon
+    --         list.Set( "NPC", cls.."_all", NewTbl )
+    
+    --     end
+
+    -- end
 
 
     -- Entities
@@ -37,6 +52,19 @@ hook.Add("Initialize", "spawnmenugrouper", function()
         local NewTbl = table.Copy(tbl)
         NewTbl.Category = "ALL"
         list.Set( "Weapon", cls.."_all", NewTbl )
+
+    end
+
+
+
+    -- Vehicles
+    for cls, tbl in pairs(list.Get("Vehicles")) do
+
+        local NewTbl = table.Copy(tbl)
+        NewTbl.Category = "ALL"
+        NewTbl.IconOverride = file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
+        or GenericIcon
+        list.Set( "Vehicles", cls.."_all", NewTbl )
 
     end
 
