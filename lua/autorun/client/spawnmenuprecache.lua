@@ -25,7 +25,7 @@ hook.Add("Initialize", "SpawnMenuAntiStutter", function()
     concommand.Add("ClickAllNodes", function()
 
         local StartT = SysTime()
-        local NodeToSelect
+        local Nodes_All = {} -- The 'all' category nodes, will be clicked in the end so that it the first tab that appears
 
 
         for _, node in ipairs(Nodes) do
@@ -35,16 +35,16 @@ hook.Add("Initialize", "SpawnMenuAntiStutter", function()
 
 
             if node:GetText()=="ALL" then
-                NodeToSelect = node
+                table.insert(Nodes_All, node)
             end
 
         end
 
 
-        -- Select "all" category
-        -- if NodeToSelect then
-        --     NodeToSelect:DoClick()
-        -- end
+        -- Select "all" category for all tabs
+        for _, node in ipairs(Nodes_All) do
+            node:DoClick()
+        end
 
 
         MsgN("Clicked All Nodes (", math.Round(SysTime()-StartT, 2), " seconds)")

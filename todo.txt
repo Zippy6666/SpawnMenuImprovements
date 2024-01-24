@@ -1,2 +1,3 @@
 >>> TODO <<<
 - Preload NPCs, weapons, and entities
+- Check if we already have a icon override!
