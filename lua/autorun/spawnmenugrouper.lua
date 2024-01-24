@@ -11,7 +11,7 @@ hook.Add("Initialize", "spawnmenugrouper", function()
 
         local NewTbl = table.Copy(tbl)
         NewTbl.Category = "ALL"
-        NewTbl.IconOverride = file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
+        NewTbl.IconOverride = NewTbl.IconOverride or file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
         or GenericIcon
         list.Set( "NPC", cls.."_all", NewTbl )
 
@@ -23,7 +23,7 @@ hook.Add("Initialize", "spawnmenugrouper", function()
 
         local NewTbl = table.Copy(tbl)
         NewTbl.Category = "ALL"
-        NewTbl.IconOverride = file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
+        NewTbl.IconOverride = NewTbl.IconOverride or file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
         or GenericIcon
         list.Set( "SpawnableEntities", cls.."_all", NewTbl )
 
@@ -45,7 +45,7 @@ hook.Add("Initialize", "spawnmenugrouper", function()
 
         local NewTbl = table.Copy(tbl)
         NewTbl.Category = "ALL"
-        NewTbl.IconOverride = file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
+        NewTbl.IconOverride = NewTbl.IconOverride or file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
         or GenericIcon
         list.Set( "Vehicles", cls.."_all", NewTbl )
 
