@@ -4,6 +4,13 @@ local GenericIcon = "icon16/bricks_all.png"
 list.Set( "ContentCategoryIcons", "ALL", GenericIcon )
 
 
+local function FindIcon( cls )
+    return (file.Exists( "materials/entities/" .. cls .. ".png", "GAME" ) && "entities/" .. cls .. ".png")
+    or (file.Exists( "materials/vgui/entities/" .. cls .. ".png", "GAME" ) && "entities/" .. cls .. ".png")
+    or GenericIcon
+end
+
+
 hook.Add("Initialize", "spawnmenugrouper", function()
 
     -- NPCs
@@ -11,8 +18,7 @@ hook.Add("Initialize", "spawnmenugrouper", function()
 
         local NewTbl = table.Copy(tbl)
         NewTbl.Category = "ALL"
-        NewTbl.IconOverride = NewTbl.IconOverride or file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
-        or GenericIcon
+        NewTbl.IconOverride = NewTbl.IconOverride or FindIcon(cls)
         list.Set( "NPC", cls.."_all", NewTbl )
 
     end
@@ -23,8 +29,8 @@ hook.Add("Initialize", "spawnmenugrouper", function()
 
         local NewTbl = table.Copy(tbl)
         NewTbl.Category = "ALL"
-        NewTbl.IconOverride = NewTbl.IconOverride or file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
-        or GenericIcon
+        NewTbl.IconOverride = NewTbl.IconOverride or FindIcon(cls)
+
         list.Set( "SpawnableEntities", cls.."_all", NewTbl )
 
     end
@@ -45,7 +51,7 @@ hook.Add("Initialize", "spawnmenugrouper", function()
 
         local NewTbl = table.Copy(tbl)
         NewTbl.Category = "ALL"
-        NewTbl.IconOverride = NewTbl.IconOverride or file.Exists( "materials/entities/" .. cls .. ".png", "GAME" )&&"entities/" .. cls .. ".png"
+        NewTbl.IconOverride = NewTbl.IconOverride or FindIcon(cls)
         or GenericIcon
         list.Set( "Vehicles", cls.."_all", NewTbl )
 
